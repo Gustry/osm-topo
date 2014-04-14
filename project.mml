@@ -1,0 +1,1246 @@
+{
+  "bounds": [
+    6.4634,
+    44.4784,
+    6.7134,
+    44.6726
+  ],
+  "center": [
+    6.5698,
+    44.5132,
+    10
+  ],
+  "format": "png",
+  "interactivity": {
+    "layer": "contours_100",
+    "template_teaser": "{{{height}}}",
+    "fields": [
+      "height"
+    ]
+  },
+  "minzoom": 0,
+  "maxzoom": 18,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "palette.mss",
+    "base.mss",
+    "roads.mss",
+    "labels.mss",
+    "hiking.mss",
+    "others.mss",
+    "placenames.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "raster",
+      "extent": [
+        6.000000000000008,
+        44,
+        6.9999999999999964,
+        44.999999999999986
+      ],
+      "id": "n44e006color",
+      "class": "",
+      "Datasource": {
+        "file": "tiff/N44E006-color.tif"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "n44e006color",
+      "status": "off"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "file": "http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/physical/10m-land.zip",
+        "host": "localhost",
+        "id": "land",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "user": "www-data"
+      },
+      "class": "shp",
+      "geometry": "polygon",
+      "id": "land",
+      "name": "land",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "file": "http://tilemill-data.s3.amazonaws.com/osm/coastline-good.zip"
+      },
+      "class": "shp",
+      "geometry": "polygon",
+      "id": "processed_p",
+      "name": "processed_p",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "file": "http://tilemill-data.s3.amazonaws.com/osm/shoreline_300.zip"
+      },
+      "class": "shp",
+      "geometry": "polygon",
+      "id": "shoreline_300",
+      "name": "shoreline_300",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "landuse_gen0",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "osm-bright-imposm",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 100000\n  ORDER BY way_area DESC\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "multipolygon",
+      "id": "landuse_gen0",
+      "name": "landuse_gen0",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "landuse_gen1",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "osm-bright-imposm",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 10000\n  ORDER BY way_area DESC\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "multipolygon",
+      "id": "landuse_gen1",
+      "name": "landuse_gen1",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "landuse",
+        "key_field": "osm_id",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT osm_id,way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE landuse IS NOT NULL OR leisure IS NOT NULL OR \"natural\" IS NOT NULL or highway IS NOT NULL OR amenity IS NOT NULL OR tourism IS NOT NULL\n  ORDER BY way_area DESC\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "landuse",
+      "name": "landuse",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
+    },
+    {
+      "geometry": "raster",
+      "extent": [
+        -180,
+        -56.99991145649331,
+        179.99928331805748,
+        85.051
+      ],
+      "id": "hillshade",
+      "class": "",
+      "Datasource": {
+        "file": "tiff/hillshade.tiff"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "hillshade"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        6.000000000000005,
+        43.99999999999998,
+        6.999999999999999,
+        45.000000000000014
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 100 = 0) as \"contours-100\"",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "667916.944759642,5465442.18332275,779236.435552915,5621521.48619207",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "dbname": "contours",
+        "password": "sogefi"
+      },
+      "id": "contours_100",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "contours_100"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        6.000000000000005,
+        43.99999999999998,
+        6.999999999999999,
+        45.000000000000014
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 50 = 0) as \"contours-50\"",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "667916.944759642,5465442.18332275,779236.435552915,5621521.48619207",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "dbname": "contours",
+        "password": "sogefi"
+      },
+      "id": "contours_50",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "contours_50"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        6.000000000000005,
+        43.99999999999998,
+        6.999999999999999,
+        45.000000000000014
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0 AND height::integer % 100 != 0) as \"contours-10\"",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "667916.944759642,5465442.18332275,779236.435552915,5621521.48619207",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "dbname": "contours",
+        "password": "sogefi"
+      },
+      "id": "contours_10",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "contours_10"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        6,
+        44,
+        7,
+        45
+      ],
+      "id": "contours",
+      "class": "",
+      "Datasource": {
+        "file": "layers/contours.shp",
+        "id": "contours",
+        "project": "OSMBright",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "contours"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "waterway",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "waterway_low",
+      "name": "waterway_low",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "waterway_med",
+      "name": "waterway_med",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "waterway_high",
+      "name": "waterway_high",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "water_gen0",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 10000\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "water_gen0",
+      "name": "water_gen0",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "water_gen1",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 1000\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "water_gen1",
+      "name": "water_gen1",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "water",
+        "key_field": "osm_id",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT osm_id, way, way_area AS area, name\n  FROM planet_osm_polygon\n  WHERE \"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream')\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "water",
+      "name": "water",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "landuse_overlays",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, way_area AS area, name, COALESCE(leisure,man_made) AS type\n  FROM planet_osm_polygon\n  WHERE leisure = 'nature_reserve'\n  OR man_made IS NOT NULL\n  ORDER BY way_area DESC\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "landuse_overlays",
+      "name": "landuse_overlays",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "buildings",
+      "name": "buildings",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "aeroway",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, aeroway AS type\n  FROM planet_osm_line\n  WHERE aeroway IN ('apron', 'runway', 'taxiway')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "aeroway",
+      "name": "aeroway",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "tunnel",
+        "key_field": "osm_id",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "osm-bright-master",
+        "srs": null,
+        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 0 AS bridge, access, tags->'access:winter' as winter, render, layer, 1 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n  ) AS tunnels\n  ORDER BY layer ASC, render ASC\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "tunnel",
+      "name": "tunnel",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "turning_circle_case",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "osm-bright-master",
+        "srs": null,
+        "table": "( SELECT way \n  FROM planet_osm_point \n  WHERE highway = 'turning_circle'\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "point",
+      "id": "turning_circle_case",
+      "name": "turning_circle_case",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "roads_high",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, tags->'access:winter' as winter, 'fill' AS render,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM planet_osm_line\n  WHERE (highway IS NOT NULL OR railway IS NOT NULL)\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n  ORDER BY z_order\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "roads_high",
+      "name": "roads_high",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "table": "( SELECT way, highway AS type\n  FROM planet_osm_roads\n  WHERE highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "roads_med",
+      "name": "roads_med",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "table": "( SELECT way, highway AS type, bridge, tunnel\n    FROM planet_osm_roads\n    WHERE highway IN ('motorway', 'trunk')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "roads_low",
+      "name": "roads_low",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "table": "( SELECT way \n  FROM planet_osm_point\n  WHERE highway = 'turning_circle'\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "point",
+      "id": "turning_circle_fill",
+      "name": "turning_circle_fill",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "bridge",
+        "key_field": "osm_id",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "osm-bright-master",
+        "srs": null,
+        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 1 AS bridge, access, tags->'access:winter' as winter, render, layer, 0 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n  ) AS bridges\n  ORDER BY layer ASC, render ASC\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "bridge",
+      "name": "bridge",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, coalesce(tags->'is_capital', (case when coalesce(admin_level, capital)='2' then 'country' when coalesce(admin_level, capital)='4' then 'state' else null end) ) as is_capital      from planet_osm_point      where place is not null and place in ('city','town') and (tags->'is_capital' in ('country','state') or capital in ('2','4') or (capital='yes' and admin_level in ('2','4'))) order by is_capital, place, pop desc ) as placenames",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis"
+      },
+      "id": "placenames-capital",
+      "class": "placenames",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "placenames-capital"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,place,coalesce(tags->'short_name:fr',tags->'name:fr',tags->'short_name',tags->'int_name',name) as name, osm_id, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, ref,0 as way_area from planet_osm_point where place is not null and place  in ('country','state','continent') order by place, pop desc ) as placenames",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis"
+      },
+      "id": "placenames-large",
+      "class": "country state",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "placenames-large"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, tags->'is_capital' as is_capital       from planet_osm_point      where place is not null and place in ('city','town') order by tags->'is_capital' desc, place, pop desc ) as placenames",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis"
+      },
+      "id": "placenames-medium",
+      "class": "placenames",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "placenames-medium"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, regexp_replace(regexp_replace(replace(replace(replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-'),'Lotissement ','Lot. '),'Résidence ','Rés. '),'^Place ','Pl. '),'^Pointe ','Pᵗᵉ ') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop       from planet_osm_point      where place is not null and place in ('suburb','village','large_village','hamlet','locality','isolated_dwelling','farm') order by pop desc     ) as placenames",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis"
+      },
+      "id": "placenames-small",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "placenames-small"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, regexp_replace(regexp_replace(replace(replace(replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-'),'Lotissement ','Lot. '),'Résidence ','Rés. '),'^Place ','Pl. '),'^Pointe ','Pᵗᵉ ') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop       from planet_osm_point      where place is not null and place in ('suburb','village','large_village','hamlet','locality','isolated_dwelling','farm') order by pop desc, osm_id     ) as placenames",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis"
+      },
+      "id": "placenames-small-lz",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "placenames-small-lz"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "file": "http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.4.0/cultural/10m-populated-places-simple.zip",
+        "host": "localhost",
+        "password": "sogefi",
+        "port": "5432",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "point",
+      "id": "ne_places",
+      "name": "ne_places",
+      "srs": "",
+      "srs-name": "autodetect",
+      "status": "off"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "place",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, place AS type, name, z_order, population\n  FROM planet_osm_point\n  WHERE place in ('country', 'state', 'city', 'town', 'village', 'hamlet', 'suburb', 'neighbourhood', 'locality')\n  ORDER BY population DESC NULLS LAST\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "point",
+      "id": "place",
+      "name": "place",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "status": "off"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "area_label",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type,\n    name, way_area AS area,\n    ST_PointOnSurface(way) AS way\n  FROM planet_osm_polygon\n  WHERE name IS NOT NULL\n    \n    AND way && !bbox!\n    AND ST_IsValid(way)\n   AND (\nlanduse IS NOT NULL OR leisure IS NOT NULL OR \"natural\" IS NOT NULL OR highway IS NOT NULL OR amenity IS NOT NULL OR tourism IS NOT NULL\n)\n  UNION ALL\n\n  SELECT 'building' AS type, name, way_area AS area,\n    ST_PointOnSurface(way) AS way\n  FROM planet_osm_polygon\n  WHERE name IS NOT NULL\n   AND building IS NOT NULL\n    AND building NOT IN ('', 'no', '0', 'false')\n    AND way && !bbox!\n    AND ST_IsValid(way)\n  ORDER BY area DESC\n) AS data",
+        "type": "postgis",
+        "user": "www-data",
+        "extent_cache": "auto"
+      },
+      "class": "",
+      "geometry": "point",
+      "id": "area_label",
+      "name": "area_label",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {},
+      "status": "off"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "motorway_label",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, highway AS type, name, ref, oneway, CHAR_LENGTH(ref) AS reflen\n    FROM planet_osm_line\n    WHERE highway IN ('motorway', 'trunk')\n      AND (name IS NOT NULL OR ref IS NOT NULL)\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "motorway_label",
+      "name": "motorway_label",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "mainroad_label",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('primary', 'secondary', 'tertiary')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "mainroad_label",
+      "name": "mainroad_label",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "minorroad_label",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "foss4g-2011",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('residential', 'unclassified', 'road', 'living_street', 'unknown')\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "minorroad_label",
+      "name": "minorroad_label",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "Datasource": {
+        "dbname": "gis",
+        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "geometry_field": "way",
+        "host": "localhost",
+        "id": "waterway_label",
+        "key_field": "",
+        "password": "sogefi",
+        "port": "5432",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream') \n    AND name IS NOT NULL\n) AS data",
+        "type": "postgis",
+        "user": "www-data"
+      },
+      "class": "",
+      "geometry": "linestring",
+      "id": "waterway_label",
+      "name": "waterway_label",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        3.3142924690982625,
+        38.82557139193131,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select osm_id, way, \"natural\", name, ST_LENGTH(way) as length from planet_osm_line where \"natural\" = 'cliff' or \"natural\" = 'ridge' ) as t",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "natural",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "natural",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "natural"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        3.3142924690982625,
+        38.82557139193131,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select osm_id, way, name, aerialway from planet_osm_line where aerialway is not null) as t",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "aerialways",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "aerialways",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "aerialways"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        3.3142924690982625,
+        38.82557139193131,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, name, ref from planet_osm_line where route='hiking') as t",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "hiking_route",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "hiking_route",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "hiking_route"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select osm_id, way,\"natural\" as type, name, ele from planet_osm_point where \"natural\" = 'peak' or \"natural\" = 'saddle'\nUNION\nselect osm_id, way, man_made as type, name,  ele from planet_osm_point where \"man_made\" IN ('survey_point') ) as t",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "elevation",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "elevation",
+      "class": "elevation",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "elevation"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        3.3142924690982625,
+        38.82557139193131,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select st_buffer(st_collect(way),3) as way, 'poly' as type from planet_osm_point where \"natural\"='tree' AND way && !bbox! UNION select way, 'point' as type from planet_osm_point where \"natural\"='tree' AND way && !bbox! union select st_buffer(st_collect(way),3) as way, 'poly' as type from planet_osm_line where \"natural\"='tree_row' and way && !bbox! ) as trees",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "trees",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "trees",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "trees"
+    },
+    {
+      "extent": [
+        4.171043333842272,
+        42.88833335017541,
+        7.818054985682593,
+        45.18764687758501
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select osm_id, way, name from planet_osm_polygon where name ilike '%cabane%' and building is not null and name is not null) as t",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "464318.42,5294990.46,870301.9,5651111.18",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "topo_name",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "topo_name",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "topo_name"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, osm_id, 'wayside_cross' as type, name, ele from planet_osm_point where historic='wayside_cross'\nunion\nselect way, osm_id, 'guidepost' as type, name, ele from planet_osm_point where tourism='information' and tags->'information'='guidepost') as t",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "poi_hiking",
+        "project": "OSMBright",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "poi_hiking",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "poi_hiking"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select osm_id, way,'saddle' as type, name, ele from planet_osm_point where tags->'mountain_pass'='yes') as t",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "sogefi",
+        "dbname": "gis",
+        "id": "test",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "mountain_pass",
+      "class": "elevation",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "mountain_pass"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "_basemap": "",
+  "attribution": "Data © OpenStreetMap (and) contributors, CC-BY-SA",
+  "description": "",
+  "name": "Maporando",
+  "legend": ""
+}

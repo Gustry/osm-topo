@@ -37,7 +37,7 @@ Map { font-directory: url(./fonts); buffer-size: 256; }
 /* LANDUSE & LANDCOVER COLORS
 /* ================================================================== */
 
-@land:              #FCFBE7;
+@land:              #F0EBDD; //#FCFBE7;
 @water:             #7BD3FF;
 @grass:             #E6F2C1;
 @beach:             #FFEEC7;
@@ -47,13 +47,13 @@ Map { font-directory: url(./fonts); buffer-size: 256; }
 @agriculture:       #F2E8B6;
 @glacier:           #DDECEC;
 
-@building:          #E4E0E0;
+@building:          #D3CECC;
 @hospital:          rgb(229,198,195);
 @school:            #FFF5CC;
 @sports:            #B8E6B8;
 
-@residential:       @land * 0.98;
-@commercial:        @land * 0.97;
+@residential:       @land * 0.96;
+@commercial:        @land * 0.96;
 @industrial:        @land * 0.96;
 @parking:           #EEE;
 
@@ -92,7 +92,9 @@ Map { font-directory: url(./fonts); buffer-size: 256; }
 
 @standard_line:     @land * 0.85;
 @standard_fill:     #fff;
-@standard_case:     @land * 0.9;
+@standard_case:     black; //@land * 0.9;
+
+@track_fill:        #B49579;
 
 @pedestrian_line:   @standard_line;
 @pedestrian_fill:   #FAFAF5;
@@ -102,7 +104,7 @@ Map { font-directory: url(./fonts); buffer-size: 256; }
 @cycle_fill:        #FAFAF5;
 @cycle_case:        @land;
 
-@rail_line:         #999;
+@rail_line:         #535151 ;//#999;
 @rail_fill:         #fff;
 @rail_case:         @land;
 
@@ -134,9 +136,9 @@ Map { font-directory: url(./fonts); buffer-size: 256; }
 @town_text:         #464646; //#666;
 @town_halo:         @place_halo;
 
-@poi_text:          #464646; //#888;
+@poi_text:          #333333; //#888;
 
-@road_text:         #777;
+@road_text:         #333333; //#777;
 @road_halo:         #fff;
 
 @other_text:        #464646; //#888;
@@ -144,6 +146,9 @@ Map { font-directory: url(./fonts); buffer-size: 256; }
 
 @locality_text:     #464646; //#aaa;
 @locality_halo:     @land;
+
+@poi-lz:            #676767;
+@poi-lz-halo:       #FBFBFB;
 
 /* Also used for other small places: hamlets, suburbs, localities */
 @village_text:      #464646; //#888;

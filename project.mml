@@ -12,10 +12,12 @@
   ],
   "format": "png",
   "interactivity": {
-    "layer": "contours_100",
-    "template_teaser": "{{{height}}}",
+    "layer": "roads_high",
+    "template_teaser": "{{{type}}} {{{subtype}}} {{{stylegroup}}}",
     "fields": [
-      "height"
+      "type",
+      "subtype",
+      "stylegroup"
     ]
   },
   "minzoom": 0,
@@ -57,7 +59,7 @@
         "file": "http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/physical/10m-land.zip",
         "host": "localhost",
         "id": "land",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -95,48 +97,64 @@
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "landuse_gen0",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "osm-bright-imposm",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 100000\n  ORDER BY way_area DESC\n) AS data",
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 100000\n  AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "multipolygon",
       "id": "landuse_gen0",
       "name": "landuse_gen0",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "landuse_gen1",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "osm-bright-imposm",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 10000\n  ORDER BY way_area DESC\n) AS data",
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 10000\n AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "multipolygon",
       "id": "landuse_gen1",
       "name": "landuse_gen1",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -146,11 +164,11 @@
         "host": "localhost",
         "id": "landuse",
         "key_field": "osm_id",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "OSMBright",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT osm_id,way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE landuse IS NOT NULL OR leisure IS NOT NULL OR \"natural\" IS NOT NULL or highway IS NOT NULL OR amenity IS NOT NULL OR tourism IS NOT NULL\n  ORDER BY way_area DESC\n) AS data",
+        "table": "( SELECT osm_id,way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE landuse IS NOT NULL OR leisure IS NOT NULL OR \"natural\" IS NOT NULL or highway IS NOT NULL OR amenity IS NOT NULL OR tourism IS NOT NULL\n AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
         "type": "postgis",
         "user": "www-data",
         "extent_cache": "auto"
@@ -197,7 +215,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 100 = 0) as \"contours-100\"",
+        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 100 = 0  AND wkb_geometry && !bbox! ) as \"contours-100\"",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -206,7 +224,7 @@
         "port": "5432",
         "user": "www-data",
         "dbname": "contours",
-        "password": "sogefi"
+        "password": "azerty"
       },
       "id": "contours_100",
       "class": "",
@@ -225,7 +243,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 50 = 0) as \"contours-50\"",
+        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 50 = 0  AND wkb_geometry && !bbox!) as \"contours-50\"",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -234,7 +252,7 @@
         "port": "5432",
         "user": "www-data",
         "dbname": "contours",
-        "password": "sogefi"
+        "password": "azerty"
       },
       "id": "contours_50",
       "class": "",
@@ -253,7 +271,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0 AND height::integer % 100 != 0) as \"contours-10\"",
+        "table": "(select wkb_geometry,height::integer from contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0 AND height::integer % 100 != 0  AND wkb_geometry && !bbox!) as \"contours-10\"",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -262,7 +280,7 @@
         "port": "5432",
         "user": "www-data",
         "dbname": "contours",
-        "password": "sogefi"
+        "password": "azerty"
       },
       "id": "contours_10",
       "class": "",
@@ -272,134 +290,153 @@
       "name": "contours_10"
     },
     {
-      "geometry": "linestring",
-      "extent": [
-        6,
-        44,
-        7,
-        45
-      ],
-      "id": "contours",
-      "class": "",
-      "Datasource": {
-        "file": "layers/contours.shp",
-        "id": "contours",
-        "project": "OSMBright",
-        "srs": ""
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "contours"
-    },
-    {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "waterway",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n) AS data",
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_low",
       "name": "waterway_low",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n) AS data",
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_med",
       "name": "waterway_med",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n) AS data",
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_high",
       "name": "waterway_high",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "water_gen0",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 10000\n) AS data",
+        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 10000\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "polygon",
       "id": "water_gen0",
       "name": "water_gen0",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "water_gen1",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 1000\n) AS data",
+        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 1000\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "polygon",
       "id": "water_gen1",
       "name": "water_gen1",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -409,11 +446,11 @@
         "host": "localhost",
         "id": "water",
         "key_field": "osm_id",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "OSMBright2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT osm_id, way, way_area AS area, name\n  FROM planet_osm_polygon\n  WHERE \"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream')\n) AS data",
+        "table": "( SELECT osm_id, way, way_area AS area, name\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n AND way && !bbox!\n) AS data",
         "type": "postgis",
         "user": "www-data",
         "extent_cache": "auto"
@@ -440,11 +477,11 @@
         "host": "localhost",
         "id": "landuse_overlays",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "OSMBright2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area, name, COALESCE(leisure,man_made) AS type\n  FROM planet_osm_polygon\n  WHERE leisure = 'nature_reserve'\n  OR man_made IS NOT NULL\n  ORDER BY way_area DESC\n) AS data",
+        "table": "( SELECT way, way_area AS area, name, COALESCE(leisure,man_made) AS type\n  FROM planet_osm_polygon\n  WHERE (leisure = 'nature_reserve'\n  OR man_made IS NOT NULL)\n AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
         "type": "postgis",
         "user": "www-data",
         "extent_cache": "auto"
@@ -466,45 +503,61 @@
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
+        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n AND way && !bbox!\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "polygon",
       "id": "buildings",
       "name": "buildings",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "aeroway",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, aeroway AS type\n  FROM planet_osm_line\n  WHERE aeroway IN ('apron', 'runway', 'taxiway')\n) AS data",
+        "table": "( SELECT way, aeroway AS type\n  FROM planet_osm_line\n  WHERE aeroway IN ('apron', 'runway', 'taxiway')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "aeroway",
       "name": "aeroway",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -514,11 +567,11 @@
         "host": "localhost",
         "id": "tunnel",
         "key_field": "osm_id",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "osm-bright-master",
         "srs": null,
-        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 0 AS bridge, access, tags->'access:winter' as winter, render, layer, 1 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n  ) AS tunnels\n  ORDER BY layer ASC, render ASC\n) AS data",
+        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 0 AS bridge, access, tags->'access:winter' as winter, COALESCE(service, tracktype, tags->'sac_scale',NULL) AS subtype, render, layer, 1 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'minorroad'\n    WHEN highway IN ('unclassified', 'track',  'residential', 'road', 'living_street') THEN 'extraroad'\n    WHEN highway IN ('service', 'path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')  AND way && !bbox!\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no') AND way && !bbox!\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no') AND way && !bbox!\n  ) AS tunnels\n  ORDER BY layer ASC, render ASC\n) AS data",
         "type": "postgis",
         "user": "www-data",
         "extent_cache": "auto"
@@ -540,25 +593,33 @@
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "turning_circle_case",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "osm-bright-master",
         "srs": null,
-        "table": "( SELECT way \n  FROM planet_osm_point \n  WHERE highway = 'turning_circle'\n) AS data",
+        "table": "( SELECT way \n  FROM planet_osm_point \n  WHERE highway = 'turning_circle'\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "point",
       "id": "turning_circle_case",
       "name": "turning_circle_case",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -568,11 +629,11 @@
         "host": "localhost",
         "id": "roads_high",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "OSMBright",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, tags->'access:winter' as winter, 'fill' AS render,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM planet_osm_line\n  WHERE (highway IS NOT NULL OR railway IS NOT NULL)\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n  ORDER BY z_order\n) AS data",
+        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, tags->'access:winter' as winter, 'fill' AS render, COALESCE(service, tracktype, tags->'sac_scale',NULL) AS subtype,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'minorroad'\n    WHEN highway IN ('unclassified', 'track', 'residential', 'road', 'living_street') THEN 'extraroad'\n    WHEN highway IN ('path', 'service', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM planet_osm_line\n  WHERE (highway IS NOT NULL OR railway IS NOT NULL)\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n AND way && !bbox!\n  ORDER BY z_order\n) AS data",
         "type": "postgis",
         "user": "www-data",
         "extent_cache": "auto"
@@ -594,62 +655,89 @@
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "table": "( SELECT way, highway AS type\n  FROM planet_osm_roads\n  WHERE highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link')\n) AS data",
+        "table": "( SELECT way, highway AS type\n  FROM planet_osm_roads\n  WHERE highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "roads_med",
       "name": "roads_med",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "table": "( SELECT way, highway AS type, bridge, tunnel\n    FROM planet_osm_roads\n    WHERE highway IN ('motorway', 'trunk')\n) AS data",
+        "table": "( SELECT way, highway AS type, bridge, tunnel\n    FROM planet_osm_roads\n    WHERE highway IN ('motorway', 'trunk')\n   AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto",
+        "id": "roads_low",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
       },
       "class": "",
       "geometry": "linestring",
       "id": "roads_low",
       "name": "roads_low",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "table": "( SELECT way \n  FROM planet_osm_point\n  WHERE highway = 'turning_circle'\n) AS data",
+        "table": "( SELECT way \n  FROM planet_osm_point\n  WHERE highway = 'turning_circle'\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "point",
       "id": "turning_circle_fill",
       "name": "turning_circle_fill",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -659,11 +747,11 @@
         "host": "localhost",
         "id": "bridge",
         "key_field": "osm_id",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "osm-bright-master",
         "srs": null,
-        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 1 AS bridge, access, tags->'access:winter' as winter, render, layer, 0 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n  ) AS bridges\n  ORDER BY layer ASC, render ASC\n) AS data",
+        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 1 AS bridge, access, tags->'access:winter' as winter, COALESCE(service, tracktype, tags->'sac_scale',NULL) AS subtype, render, layer, 0 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'minorroad'\n    WHEN highway IN ('unclassified', 'track',  'residential', 'road', 'living_street') THEN 'service'\n    WHEN highway IN ('service', 'path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')  AND way && !bbox!\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no') AND way && !bbox!\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no') AND way && !bbox!\n  ) AS bridges\n  ORDER BY layer ASC, render ASC\n) AS data",
         "type": "postgis",
         "user": "www-data",
         "extent_cache": "auto"
@@ -683,6 +771,68 @@
       "advanced": {}
     },
     {
+      "geometry": "linestring",
+      "extent": [
+        3.3142924690982625,
+        38.82557139193131,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, name, ref from planet_osm_line where route='hiking'  AND way && !bbox!) as t",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "azerty",
+        "dbname": "gis",
+        "id": "hiking_route",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "hiking_route",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "hiking_route"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        3.3142924690982625,
+        38.82557139193131,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, power from planet_osm_line where power IN ('minor_line','line') AND way && !bbox!) as t",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "azerty",
+        "dbname": "gis",
+        "id": "power_line",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "power_line",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "power_line"
+    },
+    {
       "geometry": "point",
       "extent": [
         4.229929517683819,
@@ -692,7 +842,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, coalesce(tags->'is_capital', (case when coalesce(admin_level, capital)='2' then 'country' when coalesce(admin_level, capital)='4' then 'state' else null end) ) as is_capital      from planet_osm_point      where place is not null and place in ('city','town') and (tags->'is_capital' in ('country','state') or capital in ('2','4') or (capital='yes' and admin_level in ('2','4'))) order by is_capital, place, pop desc ) as placenames",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, coalesce(tags->'is_capital', (case when coalesce(admin_level, capital)='2' then 'country' when coalesce(admin_level, capital)='4' then 'state' else null end) ) as is_capital      from planet_osm_point      where place is not null and place in ('city','town') and (tags->'is_capital' in ('country','state') or capital in ('2','4') or (capital='yes' and admin_level in ('2','4')))  AND way && !bbox! order by is_capital, place, pop desc ) as placenames",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -700,7 +850,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis"
       },
       "id": "placenames-capital",
@@ -720,7 +870,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,place,coalesce(tags->'short_name:fr',tags->'name:fr',tags->'short_name',tags->'int_name',name) as name, osm_id, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, ref,0 as way_area from planet_osm_point where place is not null and place  in ('country','state','continent') order by place, pop desc ) as placenames",
+        "table": "(select way,place,coalesce(tags->'short_name:fr',tags->'name:fr',tags->'short_name',tags->'int_name',name) as name, osm_id, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, ref,0 as way_area from planet_osm_point where place is not null and place  in ('country','state','continent')  AND way && !bbox! order by place, pop desc ) as placenames",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -728,7 +878,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis"
       },
       "id": "placenames-large",
@@ -748,7 +898,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, tags->'is_capital' as is_capital       from planet_osm_point      where place is not null and place in ('city','town') order by tags->'is_capital' desc, place, pop desc ) as placenames",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop, tags->'is_capital' as is_capital       from planet_osm_point      where place is not null and place in ('city','town')  AND way && !bbox! order by tags->'is_capital' desc, place, pop desc ) as placenames",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -756,7 +906,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis"
       },
       "id": "placenames-medium",
@@ -776,7 +926,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, regexp_replace(regexp_replace(replace(replace(replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-'),'Lotissement ','Lot. '),'Résidence ','Rés. '),'^Place ','Pl. '),'^Pointe ','Pᵗᵉ ') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop       from planet_osm_point      where place is not null and place in ('suburb','village','large_village','hamlet','locality','isolated_dwelling','farm') order by pop desc     ) as placenames",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, regexp_replace(regexp_replace(replace(replace(replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-'),'Lotissement ','Lot. '),'Résidence ','Rés. '),'^Place ','Pl. '),'^Pointe ','Pᵗᵉ ') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop       from planet_osm_point      where place is not null and place in ('suburb','village','large_village','hamlet','locality','isolated_dwelling','farm')  AND way && !bbox! order by pop desc     ) as placenames",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -784,7 +934,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis"
       },
       "id": "placenames-small",
@@ -804,7 +954,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, regexp_replace(regexp_replace(replace(replace(replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-'),'Lotissement ','Lot. '),'Résidence ','Rés. '),'^Place ','Pl. '),'^Pointe ','Pᵗᵉ ') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop       from planet_osm_point      where place is not null and place in ('suburb','village','large_village','hamlet','locality','isolated_dwelling','farm') order by pop desc, osm_id     ) as placenames",
+        "table": "(select way,place,coalesce(tags->'name:fr',tags->'int_name',name) as name, regexp_replace(regexp_replace(replace(replace(replace(replace(replace(coalesce(tags->'short_name:fr',tags->'short_name', tags->'name:fr',tags->'int_name', name),'Saint-','Sᵗ-'),'Sainte-','Sᵗᵉ-'),'-sous-','-ss-'),'Lotissement ','Lot. '),'Résidence ','Rés. '),'^Place ','Pl. '),'^Pointe ','Pᵗᵉ ') as nom, cast(regexp_replace('0' || population,'[^0-9]','','g') as bigint) as pop       from planet_osm_point      where place is not null and place in ('suburb','village','large_village','hamlet','locality','isolated_dwelling','farm') AND way && !bbox! order by pop desc, osm_id     ) as placenames",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -812,7 +962,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis"
       },
       "id": "placenames-small-lz",
@@ -825,54 +975,12 @@
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
-        "file": "http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.4.0/cultural/10m-populated-places-simple.zip",
-        "host": "localhost",
-        "password": "sogefi",
-        "port": "5432",
-        "user": "www-data"
-      },
-      "class": "",
-      "geometry": "point",
-      "id": "ne_places",
-      "name": "ne_places",
-      "srs": "",
-      "srs-name": "autodetect",
-      "status": "off"
-    },
-    {
-      "Datasource": {
-        "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
-        "geometry_field": "way",
-        "host": "localhost",
-        "id": "place",
-        "key_field": "",
-        "password": "sogefi",
-        "port": "5432",
-        "project": "OSMBright2",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, place AS type, name, z_order, population\n  FROM planet_osm_point\n  WHERE place in ('country', 'state', 'city', 'town', 'village', 'hamlet', 'suburb', 'neighbourhood', 'locality')\n  ORDER BY population DESC NULLS LAST\n) AS data",
-        "type": "postgis",
-        "user": "www-data"
-      },
-      "class": "",
-      "geometry": "point",
-      "id": "place",
-      "name": "place",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913",
-      "status": "off"
-    },
-    {
-      "Datasource": {
-        "dbname": "gis",
         "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "area_label",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "OSMBright2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -893,100 +1001,131 @@
         179.9999999749438,
         85.051
       ],
-      "advanced": {},
-      "status": "off"
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "motorway_label",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, name, ref, oneway, CHAR_LENGTH(ref) AS reflen\n    FROM planet_osm_line\n    WHERE highway IN ('motorway', 'trunk')\n      AND (name IS NOT NULL OR ref IS NOT NULL)\n) AS data",
+        "table": "( SELECT way, highway AS type, name, ref, oneway, CHAR_LENGTH(ref) AS reflen\n    FROM planet_osm_line\n    WHERE highway IN ('motorway', 'trunk')\n      AND (name IS NOT NULL OR ref IS NOT NULL)\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "motorway_label",
       "name": "motorway_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "mainroad_label",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('primary', 'secondary', 'tertiary')\n) AS data",
+        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('primary', 'secondary', 'tertiary')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "mainroad_label",
       "name": "mainroad_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "minorroad_label",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
         "project": "foss4g-2011",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('residential', 'unclassified', 'road', 'living_street', 'unknown')\n) AS data",
+        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('residential', 'unclassified', 'road', 'living_street', 'track', 'path', 'footway', 'unknown')\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "minorroad_label",
       "name": "minorroad_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
         "dbname": "gis",
-        "extent": "-20037508.34 -20037508.34 20037508.34 20037508.34",
+        "extent": "-20037508.34,-20037508.34,20037508.34,20037508.34",
         "geometry_field": "way",
         "host": "localhost",
         "id": "waterway_label",
         "key_field": "",
-        "password": "sogefi",
+        "password": "azerty",
         "port": "5432",
-        "project": "OSMBright",
+        "project": "OSMBright2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream') \n    AND name IS NOT NULL\n) AS data",
+        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream') \n    AND name IS NOT NULL\n AND way && !bbox!\n) AS data",
         "type": "postgis",
-        "user": "www-data"
+        "user": "www-data",
+        "extent_cache": "auto"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_label",
       "name": "waterway_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        -179.9999999749438,
+        -85.051,
+        179.9999999749438,
+        85.051
+      ],
+      "advanced": {}
     },
     {
       "geometry": "linestring",
@@ -998,7 +1137,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select osm_id, way, \"natural\", name, ST_LENGTH(way) as length from planet_osm_line where \"natural\" = 'cliff' or \"natural\" = 'ridge' ) as t",
+        "table": "(select osm_id, way, \"natural\", name, ST_LENGTH(way) as length from planet_osm_line where \"natural\" = 'cliff' or \"natural\" = 'ridge'  AND way && !bbox! ) as t",
         "key_field": "osm_id",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -1006,7 +1145,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "natural",
         "project": "OSMBright",
@@ -1029,7 +1168,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select osm_id, way, name, aerialway from planet_osm_line where aerialway is not null) as t",
+        "table": "(select osm_id, way, name, aerialway from planet_osm_line where aerialway is not null AND way && !bbox! ) as t",
         "key_field": "osm_id",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -1037,7 +1176,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "aerialways",
         "project": "OSMBright",
@@ -1051,37 +1190,6 @@
       "name": "aerialways"
     },
     {
-      "geometry": "linestring",
-      "extent": [
-        3.3142924690982625,
-        38.82557139193131,
-        9.405499994105842,
-        45.28356076706912
-      ],
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select way, name, ref from planet_osm_line where route='hiking') as t",
-        "key_field": "",
-        "geometry_field": "way",
-        "extent_cache": "auto",
-        "extent": "368945.35,4696716.88,1047015.47,5666273.34",
-        "host": "localhost",
-        "port": "5432",
-        "user": "www-data",
-        "password": "sogefi",
-        "dbname": "gis",
-        "id": "hiking_route",
-        "project": "OSMBright2",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
-      },
-      "id": "hiking_route",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "hiking_route"
-    },
-    {
       "geometry": "point",
       "extent": [
         4.229929517683819,
@@ -1091,7 +1199,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select osm_id, way,\"natural\" as type, name, ele from planet_osm_point where \"natural\" = 'peak' or \"natural\" = 'saddle'\nUNION\nselect osm_id, way, man_made as type, name,  ele from planet_osm_point where \"man_made\" IN ('survey_point') ) as t",
+        "table": "(select osm_id, way,\"natural\" as type, name, ele from planet_osm_point where \"natural\" = 'peak' or \"natural\" = 'saddle'  AND way && !bbox!\nUNION\nselect osm_id, way, man_made as type, name,  ele from planet_osm_point where \"man_made\" IN ('survey_point')  AND way && !bbox! ) as t",
         "key_field": "osm_id",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -1099,7 +1207,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "elevation",
         "project": "OSMBright2",
@@ -1130,7 +1238,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "trees",
         "project": "OSMBright",
@@ -1152,7 +1260,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select osm_id, way, name from planet_osm_polygon where name ilike '%cabane%' and building is not null and name is not null) as t",
+        "table": "(select osm_id, way, name from planet_osm_polygon where name ilike '%cabane%' and building is not null and name is not null  AND way && !bbox!) as t",
         "key_field": "osm_id",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -1160,7 +1268,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "topo_name",
         "project": "OSMBright",
@@ -1183,7 +1291,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select way, osm_id, 'wayside_cross' as type, name, ele from planet_osm_point where historic='wayside_cross'\nunion\nselect way, osm_id, 'guidepost' as type, name, ele from planet_osm_point where tourism='information' and tags->'information'='guidepost') as t",
+        "table": "(select way, osm_id, 'wayside_cross' as type, name, ele from planet_osm_point where historic='wayside_cross'  AND way && !bbox!\nunion\nselect way, osm_id, 'guidepost' as type, name, ele from planet_osm_point where tourism='information' and tags->'information'='guidepost'  AND way && !bbox!\nUNION\nselect way, osm_id, 'tower' as type, name, ele from planet_osm_point where man_made='tower'  AND way && !bbox!\nUNION\nselect way, osm_id, 'monitoring_station' as type, name, ele from planet_osm_point where man_made='monitoring_station'  AND way && !bbox!\nUNION\nselect way, osm_id, 'power_tower' as type, name, ele from planet_osm_point where power='tower'  AND way && !bbox!\nUNION\nselect way, osm_id, 'power_pole' as type, name, ele from planet_osm_point where power='pole'  AND way && !bbox!\n) as t",
         "key_field": "osm_id",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -1191,10 +1299,10 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "poi_hiking",
-        "project": "OSMBright",
+        "project": "OSMBright2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
       },
       "id": "poi_hiking",
@@ -1214,7 +1322,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select osm_id, way,'saddle' as type, name, ele from planet_osm_point where tags->'mountain_pass'='yes') as t",
+        "table": "(select osm_id, way,'saddle' as type, name, ele from planet_osm_point where tags->'mountain_pass'='yes'  AND way && !bbox!) as t",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "auto",
@@ -1222,7 +1330,7 @@
         "host": "localhost",
         "port": "5432",
         "user": "www-data",
-        "password": "sogefi",
+        "password": "azerty",
         "dbname": "gis",
         "id": "test",
         "project": "OSMBright2",
@@ -1234,6 +1342,65 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "mountain_pass"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, osm_id, name, round(cast(regexp_replace(regexp_replace(ele,'[,]','.')::text,'[^0-9.]','','g') as float)) as alti from planet_osm_point  where \"natural\"='peak' and ele is not null and name is not null order by alti desc) as t",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "azerty",
+        "dbname": "gis",
+        "id": "peak-lz",
+        "project": "OSMBright2",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "peak-lz",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "peak-lz"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        4.229929517683819,
+        42.88833335017541,
+        9.405499994105842,
+        45.28356076706912
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select ST_PointOnSurface(way) as way, tags->'school:FR' as name from planet_osm_polygon where amenity in ('school','college','university')\nunion select way, 'Hôpital' as name from planet_osm_point where amenity in ('school','college','university') \nunion select ST_PointOnSurface(way) as way, 'Hôpital' as name from planet_osm_polygon where amenity='hospital'\nunion select way, 'Hôpital' as name from planet_osm_point where amenity='hospital'\nunion select ST_PointOnSurface(way) as way, 'Gendarmerie' as name from planet_osm_polygon where amenity='police' and name  ilike '%gendarmerie%' \nunion select way, 'Gendarmerie' as name from planet_osm_point where amenity='police' and name  ilike '%gendarmerie%'\nunion select ST_PointOnSurface(way) as way, 'Police' as name from planet_osm_polygon where amenity='police' and name  ilike '%police%' \nunion select way, 'Police' as name from planet_osm_point where amenity='police' and name  ilike '%police%'\nunion select ST_PointOnSurface(way) as way, 'Cinéma' as name from planet_osm_polygon where amenity='cinema'\nunion select way, 'Cinéma' as name from planet_osm_point where amenity='cinema'\nunion select ST_PointOnSurface(way) as way, 'Église' as name from planet_osm_polygon where amenity='place_of_worship' and religion='christian' union select way, 'Église' as name from planet_osm_point where amenity='place_of_worship' and religion='christian'\nunion select ST_PointOnSurface(way) as way, 'Piscine' as name from planet_osm_polygon where amenity='swimming_pool'\nunion select way, 'Piscine' as name from planet_osm_point where amenity='swimming_pool') as t",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "auto",
+        "extent": "470873.6,5294990.46,1047015.47,5666273.34",
+        "host": "localhost",
+        "port": "5432",
+        "user": "www-data",
+        "password": "azerty",
+        "dbname": "gis"
+      },
+      "id": "poi_label_lz",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "poi_label_lz"
     }
   ],
   "scale": 1,
